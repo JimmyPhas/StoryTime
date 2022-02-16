@@ -29,7 +29,7 @@ const routes: Routes = [
     EditStoryComponent,
     CreateStoryComponent,
     HomepageComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
