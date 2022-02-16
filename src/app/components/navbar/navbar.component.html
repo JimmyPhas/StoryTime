@@ -1,17 +1,18 @@
-<script
+<!-- <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"
-></script>
+></script> -->
 
 <!-- <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark unique-color" [containerInside]="false">
 
     <mdb-navbar-brand><a class="navbar-brand" href="#">StoryTime</a></mdb-navbar-brand> -->
 
-    <nav>
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">StoryTime</a>
+        </div>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link waves-light" mdbWavesEffect routerLink="/hompage" routerLinkActive="active">Homepage<span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" mdbWavesEffect routerLink="/create" routerLinkActive="active">Create Story</a>
             </li>
@@ -22,7 +23,8 @@
                 <a class="nav-link waves-light" mdbWavesEffect routerLink="/edit" routerLinkActive="active">edit</a>
             </li>
         </ul>
-    </nav>
+    </div>
+</nav>
 
 <!-- </mdb-navbar> -->
 
