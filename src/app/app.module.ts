@@ -13,14 +13,18 @@ import { CreateStoryComponent } from './components/create-story/create-story.com
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PlayingComponent } from './components/playing/playing.component';
+import { StoryDetailsComponent } from './components/story-details/story-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
   { path: 'homepage', component: HomepageComponent },
   { path: 'storylist', component: StoryListComponent },
   { path: 'create', component: CreateStoryComponent },
-  { path: 'edit',component: EditStoryComponent }
-]
+  { path: 'edit', component: EditStoryComponent },
+  { path: 'playing', component: PlayingComponent },
+  { path: 'details/:id', component: StoryDetailsComponent }
+];
 
 @NgModule({
   declarations: [
@@ -30,6 +34,8 @@ const routes: Routes = [
     CreateStoryComponent,
     HomepageComponent,
     NavbarComponent,
+    PlayingComponent,
+    StoryDetailsComponent,
   ],
   imports: [
     BrowserModule,
