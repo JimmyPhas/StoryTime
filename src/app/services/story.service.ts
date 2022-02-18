@@ -10,7 +10,10 @@ const baseUrl = 'http://localhost:8080/api/stories'
 })
 export class StoryService {
 
-  constructor (private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
+  getAll(): Observable<Story[]> {
+    return this.http.get<Story[]>(baseUrl);
+  }
 
   get(id: any): Observable<Story> {
     return this.http.get(`${baseUrl}/${id}`);
