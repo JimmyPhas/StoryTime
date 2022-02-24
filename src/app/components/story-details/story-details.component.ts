@@ -13,7 +13,8 @@ export class StoryDetailsComponent implements OnInit {
   @Input() viewMode = false;
   @Input() currentStory: Story = {
     title: '',
-    description: ''
+    description: '',
+    publish: false
   };
 
   message = '';
@@ -33,6 +34,23 @@ export class StoryDetailsComponent implements OnInit {
         next: (data) => {
           this.currentStory = data;
           console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+  updatePublished(status: boolean): void {
+    const data = {
+      title: this.currentStory.title,
+      description: this.currentStory.description,
+      published: status
+    };
+    this.message = '';
+    this.storyService.update(this.currentStory.id, data)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.currentStory.publish = status;
+          this.message = res.message ? res.message : 'The status was updated successfully!';
         },
         error: (e) => console.error(e)
       });

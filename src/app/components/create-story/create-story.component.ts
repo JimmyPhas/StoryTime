@@ -12,7 +12,8 @@ export class CreateStoryComponent implements OnInit {
   story: Story = {
     title: '',
     description: '',
-  }
+    publish: false
+  };
 
   added = false;
 
@@ -41,6 +42,7 @@ export class CreateStoryComponent implements OnInit {
     this.story = {
       title: '',
       description: '',
+      publish: false
     };
   }
 

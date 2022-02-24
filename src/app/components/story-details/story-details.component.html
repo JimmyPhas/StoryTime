@@ -8,6 +8,10 @@
         <label><strong>Description:</strong></label>
         {{ currentStory.description }}
       </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentStory.publish ? "Published" : "Pending" }}
+      </div>
       <a
         class="badge badge-warning"
         routerLink="/stories/{{ currentStory.id }}"
@@ -44,17 +48,15 @@
             name="description"
           />
         </div>
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentStory.publish ? "Published" : "Pending" }}
+        </div>
       </form>
-      <button class="badge badge-danger mr-2" (click)="deleteStory()">
-        Delete
-      </button>
-      <button
-        type="submit"
-        class="badge badge-success mb-2"
-        (click)="updateStory()"
-      >
-        Update
-      </button>
+      <button class="badge badge-primary mr-2" *ngIf="currentStory.publish" (click)="updatePublished(false)" >UnPublish</button>
+    <button *ngIf="!currentStory.publish" class="badge badge-primary mr-2" (click)="updatePublished(true)" >Publish</button>
+      <button class="badge badge-danger mr-2" (click)="deleteStory()">Delete</button>
+      <button type="submit" class="badge badge-success mb-2" (click)="updateStory()" >Update</button>
       <p>{{ message }}</p>
     </div>
     <div *ngIf="!currentStory.id">
