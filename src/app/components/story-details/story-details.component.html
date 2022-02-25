@@ -1,0 +1,67 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentStory.id">
+      <h4>Story</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentStory.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentStory.description }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentStory.publish ? "Published" : "Pending" }}
+      </div>
+      <a
+        class="badge badge-warning"
+        routerLink="/stories/{{ currentStory.id }}"
+      >
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentStory">
+      <br />
+      <p>Please click on a Story...</p>
+    </div>
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentStory.id" class="edit-form">
+      <h4>Story</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentStory.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentStory.description"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+          <label><strong>Status:</strong></label>
+          {{ currentStory.publish ? "Published" : "Pending" }}
+        </div>
+      </form>
+      <button class="badge badge-primary mr-2" *ngIf="currentStory.publish" (click)="updatePublished(false)" >UnPublish</button>
+    <button *ngIf="!currentStory.publish" class="badge badge-primary mr-2" (click)="updatePublished(true)" >Publish</button>
+      <button class="badge badge-danger mr-2" (click)="deleteStory()">Delete</button>
+      <button type="submit" class="badge badge-success mb-2" (click)="updateStory()" >Update</button>
+      <p>{{ message }}</p>
+    </div>
+    <div *ngIf="!currentStory.id">
+      <br />
+      <p>Cannot access this Story...</p>
+    </div>
+  </ng-template>
+  
