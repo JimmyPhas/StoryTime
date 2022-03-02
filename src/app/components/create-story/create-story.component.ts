@@ -22,6 +22,7 @@ export class CreateStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   saveStory(): void{
     const data = {
       title: this.story.title,

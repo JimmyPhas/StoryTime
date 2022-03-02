@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
     <div class="submit-form">
       <div *ngIf="!added">
         <div class="form-group">
@@ -30,4 +30,16 @@
       </div>
     </div>
   </div>
-  
+   -->
+
+   <h1 id="page">Create a New Story!</h1>
+    <div id="create">
+        <form method="post" name="new_story">
+            Story Title:<br><input type="text" name="story_title" placeholder="Enter Story title here" id="title" required><br>
+            Intro text:<br><textarea name="intro_input" id="intro" cols="100" rows="10" placeholder="Write the introduction for your story here!" required></textarea><br>
+            First text:<br><textarea name="text_input" id="first" cols="100" rows="10" placeholder="Write the first section of your story! Players will make decisions from this point." required
+            ></textarea><br>
+            <br>
+            <input type="submit" value="Save Story" onclick="saveStory()">
+        </form>
+    </div>
