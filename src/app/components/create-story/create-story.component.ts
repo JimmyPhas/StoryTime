@@ -28,7 +28,7 @@ export class CreateStoryComponent implements OnInit {
       title: this.story.title,
       description: this.story.description
     };
-    this.storyService.create(data)
+    this.storyService.createStory(data)
       .subscribe({
         next: (res) => {
           console.log(res);

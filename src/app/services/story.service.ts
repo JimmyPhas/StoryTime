@@ -18,7 +18,7 @@ export class StoryService {
   get(id: any): Observable<Story> {
     return this.http.get(`${baseUrl}/${id}`);
   }
-  create(data: any): Observable<any> {
+  createStory(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
   update(id: any, data: any): Observable<any> {
