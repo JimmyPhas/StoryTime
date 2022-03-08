@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StoryService } from 'src/app/services/story.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Story } from 'src/app/models/story.model';
+import { Story } from 'src/app/models/story/story.model';
 
 @Component({
   selector: 'app-story-details',
@@ -45,7 +45,7 @@ export class StoryDetailsComponent implements OnInit {
       published: status
     };
     this.message = '';
-    this.storyService.update(this.currentStory.id, data)
+    this.storyService.update(this.currentStory.story_id, data)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -57,7 +57,7 @@ export class StoryDetailsComponent implements OnInit {
   }
   updateStory(): void {
     this.message = '';
-    this.storyService.update(this.currentStory.id, this.currentStory)
+    this.storyService.update(this.currentStory.story_id, this.currentStory)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -67,7 +67,7 @@ export class StoryDetailsComponent implements OnInit {
       });
   }
   deleteStory(): void {
-    this.storyService.delete(this.currentStory.id)
+    this.storyService.delete(this.currentStory.story_id)
       .subscribe({
         next: (res) => {
           console.log(res);

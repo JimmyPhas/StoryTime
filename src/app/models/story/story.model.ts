@@ -1,5 +1,5 @@
 export class Story {
-    id?: any;
+    story_id?: number;
     title?: string;
     description?: string;
     publish?: boolean;

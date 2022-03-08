@@ -1,5 +1,5 @@
 <div *ngIf="viewMode; else editable">
-    <div *ngIf="currentStory.id">
+    <div *ngIf="currentStory.story_id">
       <h4>Story</h4>
       <div>
         <label><strong>Title:</strong></label> {{ currentStory.title }}
@@ -14,7 +14,7 @@
       </div>
       <a
         class="badge badge-warning"
-        routerLink="/stories/{{ currentStory.id }}"
+        routerLink="/stories/{{ currentStory.story_id }}"
       >
         Edit
       </a>
@@ -25,7 +25,7 @@
     </div>
   </div>
   <ng-template #editable>
-    <div *ngIf="currentStory.id" class="edit-form">
+    <div *ngIf="currentStory.story_id" class="edit-form">
       <h4>Story</h4>
       <form>
         <div class="form-group">
@@ -59,7 +59,7 @@
       <button type="submit" class="badge badge-success mb-2" (click)="updateStory()" >Update</button>
       <p>{{ message }}</p>
     </div>
-    <div *ngIf="!currentStory.id">
+    <div *ngIf="!currentStory.story_id">
       <br />
       <p>Cannot access this Story...</p>
     </div>

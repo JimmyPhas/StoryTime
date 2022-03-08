@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Story } from 'src/app/models/story.model';
+import { Story } from 'src/app/models/story/story.model';
 import { StoryService } from 'src/app/services/story.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class StoryListComponent implements OnInit {
     this.retrieveStories();
   }
   retrieveStories(): void {
-    this.storyService.getAll()
+    this.storyService.getAllStories()
       .subscribe({
         next: (data) => {
           this.stories = data;
