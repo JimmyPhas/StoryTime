@@ -15,6 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlayingComponent } from './components/playing/playing.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
+import { UpdateStoryComponent } from './components/update-story/update-story.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'create', component: CreateStoryComponent },
   { path: 'edit', component: EditStoryComponent },
   { path: 'playing', component: PlayingComponent },
-  { path: 'details/:id', component: StoryDetailsComponent }
+  { path: 'details/:id', component: StoryDetailsComponent },
+  { path: 'update', component: UpdateStoryComponent }
 ];
 
 @NgModule({
@@ -36,6 +38,7 @@ const routes: Routes = [
     NavbarComponent,
     PlayingComponent,
     StoryDetailsComponent,
+    UpdateStoryComponent,
   ],
   imports: [
     BrowserModule,

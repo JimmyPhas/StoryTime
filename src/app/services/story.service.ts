@@ -17,11 +17,11 @@ export class StoryService {
   getAllStories(): Observable<Story[]> {
     return this.http.get<Story[]>(baseUrl);
   }
-  getAllEvents(): Observable<Story[]> {
-    return this.http.get<Story[]>(baseUrl);
+  getAllEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(baseUrl);
   }
-  getAllActions(): Observable<Story[]> {
-    return this.http.get<Story[]>(baseUrl);
+  getAllActions(): Observable<Action[]> {
+    return this.http.get<Action[]>(baseUrl);
   }
 
   get(id: any): Observable<Story> {
