@@ -15,7 +15,7 @@ export class StoryService {
 
   constructor(private http: HttpClient) { }
   getAllStories(): Observable<Story[]> {
-    return this.http.get<Story[]>(baseUrl);
+    return this.http.get<Story[]>(`${baseUrl}/storylist`);
   }
   getAllEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(baseUrl);
