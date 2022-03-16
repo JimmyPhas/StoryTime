@@ -1,11 +1,18 @@
 <h1 id="page">Create a New Story!</h1>
-<div id="create">
-    <form method="post" name="new_story">
-        Story Title:<br><input type="text" name="story_title" placeholder="Enter Story title here" id="title" required><br>
-        Story Description:<br><textarea name="description" id="description" cols="100" rows="10" placeholder="Write a description for your story here!" required></textarea><br>
-        First Event:<br><textarea name="event_input" id="first" cols="100" rows="10" placeholder="Write the first section of your story! Players will make decisions from this point." required
-        ></textarea><br>
-        <br>
-        <input type="submit" value="Save Story" onclick="saveStory()">
-    </form>
+<div class="submit-form">
+    <div *ngIf="!added">
+        <div class="form-group">
+            <label for="title">Story Title</label>
+                <input type="text" class="form-control" placeholder="Enter Story title here" id="title" required [(ngModel)]="story.title" name="title" />
+        </div>
+        <div class="form-group">
+            <label for="description">Story Description</label>
+                <textarea class="form-control" id="description" cols="100" rows="10" placeholder="Write a description for your story here!" required [(ngModel)]="story.description" name="description"></textarea>
+        </div>
+        <button (click)="saveStory()" class="btn btn-success">Submit</button>
+    </div>
+    <div *ngIf="added">
+        <h4>Story was submitted successfully!</h4>
+        <button class="btn btn-success" (click)="newStory()">Add</button>
+    </div>
 </div>

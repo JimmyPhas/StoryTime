@@ -17,6 +17,15 @@ export class StoryService {
   getAllStories(): Observable<Story[]> {
     return this.http.get<Story[]>(`${baseUrl}/storylist`);
   }
+  getStoryID(title: any): Observable<Story> {
+    return this.http.get<Story>(`${baseUrl}/create?title=${title}`);
+  }
+  findByTitle(title: any): Observable<Story[]> {
+    return this.http.get<Story[]>(`${baseUrl}?title=${title}`);
+  }
+  getEventID(eventText: any): Observable<Event> {
+    return this.http.get<Event>(`${baseUrl}/create?event_text=${eventText}`);
+  }
   getAllEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(baseUrl);
   }
@@ -29,7 +38,7 @@ export class StoryService {
   }
   
   createStory(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}/create`, data);
   }
   createEvent(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
@@ -47,10 +56,6 @@ export class StoryService {
   }
   deleteAll(): Observable<any> {
     return this.http.delete(baseUrl);
-  }
-
-  findByTitle(title: any): Observable<Story[]> {
-    return this.http.get<Story[]>(`${baseUrl}?title=${title}`);
   }
 
 }
