@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Story } from 'src/app/models/story/story.model';
 import { Event } from 'src/app/models/event/event.model';
 import { Action } from 'src/app/models/action/action.model';
 import { StoryService } from 'src/app/services/story.service';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-create-story',
@@ -19,19 +20,17 @@ export class CreateStoryComponent implements OnInit {
     publish: false
   };
 
-  // storyID?: Story[];
-  storyID: Story = {
-    title: '',
-    description: '',
-    publish: false
-  };
-
   eventID: Event = {
     event_id: 0,
     event_text: '',
     intro: false
   };
 
+  storyID = -1;
+  storySent = false;
+  storyIDRecieved = false;
+  eventIDRecieved = false;
+  eventSent = false;
   added = false;
 
   constructor(private storyService: StoryService) { }
@@ -40,6 +39,7 @@ export class CreateStoryComponent implements OnInit {
   }
 
   saveStory(): void{
+    // this.storyTitle = this.story.title as string;
     const storyData = {
       title: this.story.title,
       description: this.story.description
@@ -49,46 +49,60 @@ export class CreateStoryComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.added = true;
+          this.storySent = true;
         },
         error: (e) => console.error(e)
       });
-
-    // this.searchStory();
-    console.log(this.story.title);
+  }
+  
+  lmao(): void {
+    console.log("LMAO");
+  }
+  FOOKyou(): void {
+    this.storySent = true;
+    console.log("42 shall save us all");
+  }
+  FUCKme(): void {
+    this.storySent = false;
+    console.log("LMAO Im never gonna see this!@!@!@!@!@!@");
+  }
+  searchStory(): void{
+    this.storySent = false;
     this.storyService.findByTitle(this.story.title)
       .subscribe({
         next: (data) => {
-          this.stories = data;
-          console.log(this.story.title);
-          // this.storyID.story_id = data.story_id;
-          // this.storyID.title = data.title;
-          // this.storyID.description = data.description;
-          // this.storyID.publish = data.publish;
-          console.log("this is the data");
+          this.storyID = data[0].story_id as number;
+          this.storyIDRecieved = true;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
+  saveEvent(): void{
+    const eventData = {
+      event_text: this.story.description,
+      intro: true,
+      for_story: this.storyID
+    };
+    this.storyService.createEvent(eventData)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.eventSent = true;
+        },
+        error: (e) => console.error(e)
+      });
+  }
+  searchEvent(): void{
+    this.storyService.getEventID("one")
+      .subscribe({
+        next: (data) => {
+          this.eventID = data;
           console.log(data);
         },
         error: (e) => console.error(e)
       });
-    console.log("this is the storyID");
-    console.log(this.stories);
-    console.log("after");
-    // this.searchEvent();
   }
-
-  // saveEvent(): void{
-  //   const eventData = {
-  //     event_text: this.story.description,
-  //     intro: true,
-  //     for_story: this.storyID.story_id
-  //   };
-  //   this.storyService.createEvent(eventData)
-  //     .subscribe({
-  //       next: (res) => {
-  //         console.log(res);
-  //       },
-  //       error: (e) => console.error(e)
-  //     });
-  // }
 
   saveActions(): void{
     const actionData = {
@@ -112,28 +126,6 @@ export class CreateStoryComponent implements OnInit {
       description: '',
       publish: false
     };
-  }
-
-  // searchStory(): void{
-  //   this.storyService.getStoryID(this.story.title)
-  //     .subscribe({
-  //       next: (data) => {
-  //         this.storyID = data;
-  //         console.log(data);
-  //       },
-  //       error: (e) => console.error(e)
-  //     });
-  // }
-
-  searchEvent(): void{
-    this.storyService.getEventID(this.story.description)
-      .subscribe({
-        next: (data) => {
-          this.eventID = data;
-          console.log(data);
-        },
-        error: (e) => console.error(e)
-      });
   }
 
 
