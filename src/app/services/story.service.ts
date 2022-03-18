@@ -20,8 +20,8 @@ export class StoryService {
   findByTitle(title: any): Observable<Story[]> {
     return this.http.get<Story[]>(`${baseUrl}?title=${title}`);
   }
-  getEventID(eventText: any): Observable<Event> {
-    return this.http.get<Event>(`${baseUrl}/create?event_text=${eventText}`);
+  getEventID(eventText: any): Observable<Event[]> {
+    return this.http.get<Event[]>(`${baseUrl}/create?event_text=${eventText}`);
   }
   getAllEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(baseUrl);

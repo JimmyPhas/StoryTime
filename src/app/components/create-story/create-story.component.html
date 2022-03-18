@@ -19,4 +19,7 @@
     <div *ngIf="storySent?searchStory():false"></div>
     <div *ngIf="storyIDRecieved?saveEvent():false"></div>
     <div *ngIf="eventSent?searchEvent():false"></div>
+    <div *ngIf="eventIDRecieved?saveActions():false"></div>
 </div>
+
+<!-- https://stackoverflow.com/questions/52317494/is-it-good-to-call-subscribe-inside-subscribe -->

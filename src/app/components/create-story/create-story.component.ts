@@ -79,6 +79,7 @@ export class CreateStoryComponent implements OnInit {
   }
 
   saveEvent(): void{
+    this.storyIDRecieved = false;
     const eventData = {
       event_text: this.story.description,
       intro: true,
@@ -94,17 +95,24 @@ export class CreateStoryComponent implements OnInit {
       });
   }
   searchEvent(): void{
-    this.storyService.getEventID("one")
+    this.eventSent = false;
+    console.log("1")
+    this.storyService.getEventID(this.story.description)
       .subscribe({
         next: (data) => {
-          this.eventID = data;
+          console.log("2")
+          this.eventID = data[0];
           console.log(data);
+          console.log("3");
+          console.log(this.eventID.event_text);
+          this.eventIDRecieved = true;
         },
         error: (e) => console.error(e)
       });
   }
 
   saveActions(): void{
+    this.eventIDRecieved = false;
     const actionData = {
       action_text: "Start",
       result_text: null,
