@@ -38,7 +38,7 @@ export class CreateStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveStory(): void{
+  async saveStory(): Promise<void>{
     // this.storyTitle = this.story.title as string;
     const storyData = {
       title: this.story.title,
@@ -48,11 +48,70 @@ export class CreateStoryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
-          this.added = true;
-          this.storySent = true;
         },
         error: (e) => console.error(e)
       });
+
+    console.log("1");
+    await new Promise(f => setTimeout(f, 300));
+    this.storyService.findByTitle(this.story.title)
+      .subscribe({
+        next: (data) => {
+          this.storyID = data[0].story_id as number;
+          console.log(this.storyID);
+          console.log("2");
+        },
+        error: (e) => console.error(e)
+      });
+    
+    console.log("3");
+    await new Promise(f => setTimeout(f, 300));
+    const eventData = {
+      event_text: this.story.description,
+      intro: true,
+      for_story: this.storyID
+    };
+    this.storyService.createEvent(eventData)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          console.log("4");
+        },
+        error: (e) => console.error(e)
+      });
+
+    console.log("5");
+    await new Promise(f => setTimeout(f, 300));
+    this.storyService.getEventID(this.story.description)
+      .subscribe({
+        next: (data) => {
+          this.eventID = data[0];
+          console.log(data);
+          console.log(this.eventID.event_text);
+          console.log("6");
+        },
+        error: (e) => console.error(e)
+      });
+
+    console.log("7");
+    await new Promise(f => setTimeout(f, 300));
+    const actionData = {
+      action_text: "Start",
+      result_text: null,
+      action_of: this.eventID.event_id
+    }
+    this.storyService.createAction(actionData)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.added = true;
+          console.log("8");
+        },
+        error: (e) => console.error(e)
+      });
+
+    console.log("FIN");
+    await new Promise(f => setTimeout(f, 300));
   }
   
   lmao(): void {
@@ -66,17 +125,17 @@ export class CreateStoryComponent implements OnInit {
     this.storySent = false;
     console.log("LMAO Im never gonna see this!@!@!@!@!@!@");
   }
-  searchStory(): void{
-    this.storySent = false;
-    this.storyService.findByTitle(this.story.title)
-      .subscribe({
-        next: (data) => {
-          this.storyID = data[0].story_id as number;
-          this.storyIDRecieved = true;
-        },
-        error: (e) => console.error(e)
-      });
-  }
+  // searchStory(): void{
+  //   this.storySent = false;
+  //   this.storyService.findByTitle(this.story.title)
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.storyID = data[0].story_id as number;
+  //         this.storyIDRecieved = true;
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
 
   saveEvent(): void{
     this.storyIDRecieved = false;
@@ -94,38 +153,38 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
   }
-  searchEvent(): void{
-    this.eventSent = false;
-    console.log("1")
-    this.storyService.getEventID(this.story.description)
-      .subscribe({
-        next: (data) => {
-          console.log("2")
-          this.eventID = data[0];
-          console.log(data);
-          console.log("3");
-          console.log(this.eventID.event_text);
-          this.eventIDRecieved = true;
-        },
-        error: (e) => console.error(e)
-      });
-  }
+  // searchEvent(): void{
+  //   this.eventSent = false;
+  //   console.log("1")
+  //   this.storyService.getEventID(this.story.description)
+  //     .subscribe({
+  //       next: (data) => {
+  //         console.log("2")
+  //         this.eventID = data[0];
+  //         console.log(data);
+  //         console.log("3");
+  //         console.log(this.eventID.event_text);
+  //         this.eventIDRecieved = true;
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
 
-  saveActions(): void{
-    this.eventIDRecieved = false;
-    const actionData = {
-      action_text: "Start",
-      result_text: null,
-      action_of: this.eventID.event_id
-    }
-    this.storyService.createAction(actionData)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (e) => console.error(e)
-      });
-  }
+  // saveActions(): void{
+  //   this.eventIDRecieved = false;
+  //   const actionData = {
+  //     action_text: "Start",
+  //     result_text: null,
+  //     action_of: this.eventID.event_id
+  //   }
+  //   this.storyService.createAction(actionData)
+  //     .subscribe({
+  //       next: (res) => {
+  //         console.log(res);
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
 
   newStory(): void {
     this.added = false;

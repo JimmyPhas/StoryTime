@@ -10,16 +10,16 @@
                 <textarea class="form-control" id="description" cols="100" rows="10" placeholder="Write a description for your story here!" required [(ngModel)]="story.description" name="description"></textarea>
         </div>
         <button (click)="saveStory()" class="btn btn-success">Submit</button>
-        <button (click)="searchEvent()" class="btn btn-success" style="margin-left: 30px;" (ngModelChange)="lmao()">FUCK</button>
+        <!-- <button (click)="searchEvent()" class="btn btn-success" style="margin-left: 30px;" (ngModelChange)="lmao()">FUCK</button> -->
     </div>
     <div *ngIf="added">
         <h4>Story was submitted successfully!</h4>
         <button class="btn btn-success" (click)="newStory()">Add</button>
     </div>
-    <div *ngIf="storySent?searchStory():false"></div>
+    <!-- <div *ngIf="storySent?searchStory():false"></div>
     <div *ngIf="storyIDRecieved?saveEvent():false"></div>
     <div *ngIf="eventSent?searchEvent():false"></div>
-    <div *ngIf="eventIDRecieved?saveActions():false"></div>
+    <div *ngIf="eventIDRecieved?saveActions():false"></div> -->
 </div>
 
 <!-- https://stackoverflow.com/questions/52317494/is-it-good-to-call-subscribe-inside-subscribe -->

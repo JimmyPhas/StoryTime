@@ -38,10 +38,10 @@ export class StoryService {
     return this.http.post(`${baseUrl}/create`, data);
   }
   createEvent(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}/create`, data);
   }
   createAction(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}/create`, data);
   }
 
   update(id: any, data: any): Observable<any> {
