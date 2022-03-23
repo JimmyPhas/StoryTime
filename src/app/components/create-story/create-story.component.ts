@@ -33,6 +33,20 @@ export class CreateStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  saveEvent(): void {
+    const storyData = {
+      title: this.story.title,
+      description: this.story.description
+    };
+    this.storyService.createStory(storyData)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (e) => console.error(e)
+      });
+  }
+
   async saveStory(): Promise<void>{
     // this.storyTitle = this.story.title as string;
     const storyData = {
@@ -47,19 +61,16 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
 
-    console.log("1");
     await new Promise(f => setTimeout(f, 300));
     this.storyService.findByTitle(this.story.title)
       .subscribe({
         next: (data) => {
           this.storyID = data[0].story_id as number;
           console.log(this.storyID);
-          console.log("2");
         },
         error: (e) => console.error(e)
       });
     
-    console.log("3");
     await new Promise(f => setTimeout(f, 300));
     const eventData = {
       event_text: this.story.description,
@@ -70,12 +81,10 @@ export class CreateStoryComponent implements OnInit {
       .subscribe({
         next: (res) => {
           console.log(res);
-          console.log("4");
         },
         error: (e) => console.error(e)
       });
 
-    console.log("5");
     await new Promise(f => setTimeout(f, 300));
     this.storyService.getEventID(this.story.description)
       .subscribe({
@@ -83,29 +92,26 @@ export class CreateStoryComponent implements OnInit {
           this.eventID = data[0];
           console.log(data);
           console.log(this.eventID.event_text);
-          console.log("6");
         },
         error: (e) => console.error(e)
       });
 
-    console.log("7");
     await new Promise(f => setTimeout(f, 300));
     const actionData = {
       action_text: "Start",
       result_text: null,
-      action_of: this.eventID.event_id
+      action_of: this.eventID.event_id,
+      in_story: this.eventID.for_story
     }
     this.storyService.createAction(actionData)
       .subscribe({
         next: (res) => {
           console.log(res);
           this.added = true;
-          console.log("8");
         },
         error: (e) => console.error(e)
       });
 
-    console.log("FIN");
     await new Promise(f => setTimeout(f, 300));
   }
 

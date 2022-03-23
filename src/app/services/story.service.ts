@@ -31,7 +31,7 @@ export class StoryService {
   }
 
   get(id: any): Observable<Story> {
-    return this.http.get(`${baseUrl}/${id}`);
+    return this.http.get(`${baseUrl}/details/${id}`);
   }
   
   createStory(data: any): Observable<any> {
