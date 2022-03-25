@@ -24,7 +24,7 @@ export class StoryDetailsComponent implements OnInit {
   ngOnInit(): void {
     if (!this.viewMode) {
       this.message = '';
-      this.getStory(this.route.snapshot.params["id]"]);
+      this.getStory(this.route.snapshot.params["id"]);
     }
   }
 
