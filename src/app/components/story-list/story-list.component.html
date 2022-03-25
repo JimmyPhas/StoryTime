@@ -26,6 +26,7 @@
           *ngFor="let story of stories; let i = index"
           [class.active]="i == current"
           (click)="setActiveStory(story, i)"
+          routerLink="/details/i" routerLinkActive="active"
         >
           {{ story.title }}
         </li>
