@@ -18,7 +18,7 @@ export class StoryService {
     return this.http.get<Story[]>(`${baseUrl}/storylist`);
   }
   findByTitle(title: any): Observable<Story[]> {
-    return this.http.get<Story[]>(`${baseUrl}?title=${title}`);
+    return this.http.get<Story[]>(`${baseUrl}/create?title=${title}`);
   }
   getEventID(eventText: any): Observable<Event[]> {
     return this.http.get<Event[]>(`${baseUrl}/create?event_text=${eventText}`);

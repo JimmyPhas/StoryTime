@@ -33,19 +33,19 @@ export class CreateStoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveEvent(): void {
-    const storyData = {
-      title: this.story.title,
-      description: this.story.description
-    };
-    this.storyService.createStory(storyData)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-        },
-        error: (e) => console.error(e)
-      });
-  }
+  // saveEvent(): void {
+  //   const storyData = {
+  //     title: this.story.title,
+  //     description: this.story.description
+  //   };
+  //   this.storyService.createStory(storyData)
+  //     .subscribe({
+  //       next: (res) => {
+  //         console.log(res);
+  //       },
+  //       error: (e) => console.error(e)
+  //     });
+  // }
 
   async saveStory(): Promise<void>{
     // this.storyTitle = this.story.title as string;
@@ -61,7 +61,7 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
 
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 200));
     this.storyService.findByTitle(this.story.title)
       .subscribe({
         next: (data) => {
@@ -71,7 +71,7 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
     
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 200));
     const eventData = {
       event_text: this.story.description,
       intro: true,
@@ -85,7 +85,7 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
 
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 200));
     this.storyService.getEventID(this.story.description)
       .subscribe({
         next: (data) => {
@@ -96,7 +96,7 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
 
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 200));
     const actionData = {
       action_text: "Start",
       result_text: null,
@@ -112,7 +112,7 @@ export class CreateStoryComponent implements OnInit {
         error: (e) => console.error(e)
       });
 
-    await new Promise(f => setTimeout(f, 300));
+    await new Promise(f => setTimeout(f, 200));
   }
 
   newStory(): void {
